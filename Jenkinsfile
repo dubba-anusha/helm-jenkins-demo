@@ -15,6 +15,10 @@ pipeline {
         stage('Helm Deploy') {
             steps {
                 sh '''
+                    export PATH=$PATH:/var/jenkins_home/bin
+
+                    helm version
+
                     helm upgrade --install helm-demo ./helm-demo-chart \
                     --set image.tag=${IMAGE_TAG}
                 '''
@@ -24,6 +28,8 @@ pipeline {
         stage('Verify') {
             steps {
                 sh '''
+                    export PATH=$PATH:/var/jenkins_home/bin
+
                     kubectl get pods
                     kubectl get svc
                     helm list
