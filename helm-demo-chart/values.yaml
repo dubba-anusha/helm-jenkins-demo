@@ -1,0 +1,13 @@
+app:
+  name: helm-jenkins-demo
+
+replicaCount: 2
+
+image:
+  repository: anushadubba/helm-jenkins-demo
+  tag: v1
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 80
